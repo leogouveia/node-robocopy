@@ -16,7 +16,11 @@
     "windows"
   ],
   "scripts": {
-    "test": "gulp"
+    "test": "mocha -w",
+    "format": "npm run format:prettier && npm run format:eslint",
+    "format:prettier": "prettier --write ./**/*.js",
+    "format:eslint": "eslint --fix src/**/*.js test/**/*.js",
+    "lint:eslint": "eslint src/**/*.js test/**/*.js"
   },
   "author": "Mike O'Brien",
   "license": "MIT",
@@ -27,17 +31,16 @@
     "LICENSE"
   ],
   "devDependencies": {
-    "cases": "^0.1.1",
+    "cases": "^1.0.0",
     "chai": "^1.10.0",
-    "expect.js": "~0.3.1",
-    "gulp": "~3.8.10",
-    "gulp-filter": "~1.0.2",
-    "gulp-jshint": "~1.9.0",
-    "gulp-mocha": "~1.1.1"
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-mocha": "^10.0.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "mocha": "^9.2.0"
   },
   "dependencies": {
-    "lodash": "^2.4.1",
-    "q": "^1.1.1",
-    "underscore.string": "^2.4.0"
+    "lodash": "^4.17.21",
+    "q": "^1.5.1"
   }
 }

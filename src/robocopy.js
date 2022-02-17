@@ -1,32 +1,37 @@
-var command = require('./command'),
-    process = require('./process'),
-    Q = require('q');
+const command = require("./command"),
+  process = require("./process"),
+  Q = require("q");
 
 function runSerial(commands) {
-    commands = commands.map(function(command) { 
-        return function() { return process(command); }; 
-    });
-    var deferred = Q.defer();
-    var initial = commands.shift();
-    var output = [];
-    commands.reduce(function(promise, item) {
-        return promise.then(function(stdout) { 
-            output.push(stdout);
-            return item(); 
-        });
+  commands = commands.map(function (_command) {
+    return function () {
+      return process(_command);
+    };
+  });
+  const deferred = Q.defer();
+  const initial = commands.shift();
+  const output = [];
+  commands
+    .reduce(function (promise, item) {
+      return promise.then(function (stdout) {
+        output.push(stdout);
+        return item();
+      });
     }, initial())
-    .done(function(stdout) {
-        deferred.resolve(output.concat(stdout));
+    .done(function (stdout) {
+      deferred.resolve(output.concat(stdout));
     });
-    return deferred.promise;
+  return deferred.promise;
 }
 
 function runParallel(commands) {
-    return Q.all(commands.map(function(command) { 
-        return process(command);
-    }));
+  return Q.all(
+    commands.map(function (_command) {
+      return process(_command);
+    })
+  );
 }
 
-module.exports = function(options) {
-    return (options.serial ? runSerial : runParallel)(command(options));   
+module.exports = function (options) {
+  return (options.serial ? runSerial : runParallel)(command(options));
 };
