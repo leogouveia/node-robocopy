@@ -1,7 +1,8 @@
 # @leogouveia/robocopy
 
+![version](https://img.shields.io/npm/v/@leogouveia/robocopy)
+![node support](https://img.shields.io/node/v/@leogouveia/robocopy)
 ![license](https://img.shields.io/github/license/leogouveia/node-robocopy)
-
 
 Node wrapper for [Robocopy](http://technet.microsoft.com/en-us/library/cc733145.aspx).
 
