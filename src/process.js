@@ -1,5 +1,4 @@
 const process = require("child_process"),
-  Q = require("q"),
   parser = require("./parser"),
   readline = require("readline");
 
@@ -12,7 +11,7 @@ module.exports = function (command) {
     windowsVerbatimArguments: true,
   });
 
-  const log = function (message) {
+  const log = (message) => {
     message = message.toString("utf8");
     console.log(message);
     return message;
@@ -21,7 +20,7 @@ module.exports = function (command) {
   let stdout = "";
   let stderr = "";
 
-  const readlines = function (input, listener) {
+  const readlines = (input, listener) => {
     readline
       .createInterface({
         input: input,
@@ -29,26 +28,24 @@ module.exports = function (command) {
       .on("line", listener);
   };
 
-  readlines(robocopy.stdout, function (line) {
+  readlines(robocopy.stdout, (line) => {
     stdout += log(line);
   });
-  readlines(robocopy.stderr, function (line) {
+  readlines(robocopy.stderr, (line) => {
     stderr += log(line);
   });
 
-  const deferred = Q.defer();
-
-  robocopy.on("exit", function (code) {
-    if (code > 8) {
-      const errors = parser(stdout);
-      const message =
-        "Robocopy failed (" +
-        code +
-        ")" +
-        (errors || stderr ? ": \r\n" + (errors || stderr) : ".");
-      deferred.reject(new Error(message));
-    } else deferred.resolve(stdout);
+  return new Promise((resolve, reject) => {
+    robocopy.on("exit", (code) => {
+      if (code > 8) {
+        const errors = parser(stdout);
+        const message =
+          "Robocopy failed (" +
+          code +
+          ")" +
+          (errors || stderr ? ": \r\n" + (errors || stderr) : ".");
+        reject(new Error(message));
+      } else resolve(stdout);
+    });
   });
-
-  return deferred.promise;
 };

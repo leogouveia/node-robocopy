@@ -1,8 +1,14 @@
-# robocopy
+# @leogouveia/robocopy
 
-[![npm version](http://img.shields.io/npm/v/robocopy.svg?style=flat)](https://npmjs.org/package/robocopy) [![build status](http://img.shields.io/travis/mikeobrien/node-robocopy.svg?style=flat)](https://travis-ci.org/mikeobrien/node-robocopy) [![Dependency Status](http://img.shields.io/david/mikeobrien/node-robocopy.svg?style=flat)](https://david-dm.org/mikeobrien/node-robocopy) [![npm downloads](http://img.shields.io/npm/dm/robocopy.svg?style=flat)](https://npmjs.org/package/robocopy)
+![license](https://img.shields.io/github/license/leogouveia/node-robocopy)
+
 
 Node wrapper for [Robocopy](http://technet.microsoft.com/en-us/library/cc733145.aspx).
+
+
+## Acknowledgement
+It's an updated lib based on the original [Robocopy](https://npmjs.org/package/robocopy) from [Mike O'Brien](https://github.com/mikeobrien) 
+
 
 ## Install
 
@@ -15,7 +21,7 @@ $ npm install robocopy --save
  The first parameter is the options:
 
 ```js
-var robocopy = require('robocopy');
+const robocopy = require('robocopy');
 
 robocopy({ ... });
 ```
@@ -370,6 +376,8 @@ robocopy({
     }
 });
 ```
+
+
 
 ## License
 MIT License

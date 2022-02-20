@@ -2,8 +2,7 @@ var expect = require("chai").expect,
   cases = require("cases"),
   parse = require("../src/parser");
 
-var stdoutA =
-  "-------------------------------------------------------------------------------\r\n\
+var stdoutA = `-------------------------------------------------------------------------------\r\n\
    ROBOCOPY     ::     Robust File Copy for Windows\r\n\
 \r\n\
 -------------------------------------------------------------------------------\r\n\
@@ -27,10 +26,9 @@ var stdoutA =
 \r\n\
 2014/12/14 17:28:07 ERROR 2 (0x00000002) Accessing Source Directory\r\n\
 X:\\Temp\\gulptest\\scripts3\\\r\n\
-The system cannot find the file specified.";
+The system cannot find the file specified.`;
 
-var stdoutB =
-  "-------------------------------------------------------------------------------\r\n\
+var stdoutB = `-------------------------------------------------------------------------------\r\n\
    ROBOCOPY     ::     Robust File Copy for Windows\r\n\
 \r\n\
 -------------------------------------------------------------------------------\r\n\
@@ -56,12 +54,11 @@ ERROR : No Destination Directory Specified.\r\n\
     For more usage information run ROBOCOPY /?\r\n\
 \r\n\
 \r\n\
-****  /MIR can DELETE files as well as copy them !";
+****  /MIR can DELETE files as well as copy them !`;
 
-var errorA =
-  "ERROR 2 (0x00000002) Accessing Source Directory\r\n\
+var errorA = `ERROR 2 (0x00000002) Accessing Source Directory\r\n\
 X:\\Temp\\gulptest\\scripts3\\\r\n\
-The system cannot find the file specified.";
+The system cannot find the file specified.`;
 
 var errorB = "ERROR : No Destination Directory Specified.";
 
