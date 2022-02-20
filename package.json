@@ -26,12 +26,12 @@
   "license": "MIT",
   "devDependencies": {
     "cases": "^1.0.0",
-    "chai": "^1.10.0",
+    "chai": "^4.3.6",
     "eslint": "^8.9.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-mocha": "^10.0.3",
     "eslint-plugin-prettier": "^4.0.0",
-    "mocha": "^9.2.0",
+    "mocha": "^9.2.1",
     "prettier": "2.5.1"
   },
   "dependencies": {
